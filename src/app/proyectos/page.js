@@ -40,8 +40,8 @@ const Projects = async () => {
             <div className='grid grid-cols-3 grid-rows-2 h-screen p-4 gap-6'>
                 {projects.map((project) => {
                     return (
-                        <Link key={celula.id} href={`/proyectos/${project.id}`}>
-                            <div key={celula.id} className='bg-white rounded-lg shadow-md p-4'>
+                        <Link key={project.id} href={`/proyectos/${project.id}`}>
+                            <div key={project.id} className='bg-white rounded-lg shadow-md p-4'>
                                 <h2 className='w-full text-center font-bold'>{project.name}</h2>
                                 <ul className='flex flex-wrap w-full gap-4 p-2'>
                                     {project.technologies?.map((tecnologia, index) => {
