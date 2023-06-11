@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: #f4f5f6;
+}
+
+#board-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+}
+
+#editor {
+  flex-grow: 1;
+  font-size: 1.2rem;
+  padding: 1rem;
+}
+
+#toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+
+
+.save-button,
+.reset-button {
+  padding: 0.5rem 1rem;
+  background-color: #007aff;
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+#save-button:hover,
+#reset-button:hover {
+  background-color: #0069d9;
+}
+
+.output-container{
+  display: flex;
+  flex-direction: column;
+  padding: 32px;
+}
+
+.output{
+  display: flex;
+  border-radius: 1.25rem;
+  background-color: rgb(40, 42, 45);
+  padding: 32px;
+  color: white;
+}
+.chip{
+  background-color: #eee;
+  border-radius: 1.5em;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 8px;
+}
+
+.input {
+  width: 100%;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  padding: 8px 10px;
+  outline: none;
+  resize: none;
+  transition: 0.5s;
+}
+
+.input:focus {
+  border: 2px solid #2c77f6;
+}
+
+.login-container, .register-container{
+  padding: 32px;
+  margin: 0 auto;
+  background-color: white;
+  border-radius: 1.25em;
+  width: 50%;
+}
