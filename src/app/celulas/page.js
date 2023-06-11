@@ -38,8 +38,8 @@ export default async function Celulas(){
       <div className='grid grid-cols-3 grid-rows-3 h-screen p-4 gap-6'>
         {data.map((celula) => {
           return (
-            <Link href={`/celulas/${celula.id}`}>
-              <div className='bg-white rounded-lg shadow-md p-4 h-3/4'>
+            <Link key={celula.id} href={`/celulas/${celula.id}`}>
+              <div key={celula.id} className='bg-white rounded-lg shadow-md p-4 h-3/4'>
                 <h2 className='w-full text-center font-bold'>{celula.name}</h2>
                 <p>{celula.description}</p>
               </div>
