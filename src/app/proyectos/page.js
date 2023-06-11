@@ -44,8 +44,8 @@ const Projects = async () => {
                             <div key={celula.id} className='bg-white rounded-lg shadow-md p-4'>
                                 <h2 className='w-full text-center font-bold'>{project.name}</h2>
                                 <ul className='flex flex-wrap w-full gap-4 p-2'>
-                                    {project.technologies?.map((tecnologia) => {
-                                        return <li className='chip'>
+                                    {project.technologies?.map((tecnologia, index) => {
+                                        return <li key={`Technology_${index}`} className='chip'>
                                             {tecnologia}
                                         </li>
                                     })
