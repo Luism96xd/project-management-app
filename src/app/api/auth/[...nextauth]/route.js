@@ -1,6 +1,5 @@
-import { MongoDBAdapter } from '@next-auth/mongodb-adapter';
+//import { MongoDBAdapter } from '@next-auth/mongodb-adapter';
 import { SupabaseAdapter } from "@next-auth/supabase-adapter";
-import clientPromise from '../../../lib/mongo';
 import NextAuth from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 
