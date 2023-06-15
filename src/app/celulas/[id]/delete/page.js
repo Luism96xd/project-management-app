@@ -27,7 +27,7 @@ const DeleteCelulaPage = async ({ params }) => {
 
   return (
     <div className="w-full h-full flex flex-col justify-center items-center">
-      <h2 className='text-xl font-bold center mb-4 text-center'>¿Desea eliminar "{celula?.name}"?</h2>
+      <h2 className='text-xl font-bold center mb-4 text-center'>{`¿Desea eliminar ${celula?.name}?`}</h2>
       <div className="flex gap-2 justify-center">
         <button className="w-16 rounded-lg bg-red-600" onClick={deleteProduct}>Sí</button>
         <button className="w-16 rounded-lg bg-gray-400" onClick={goBack}>No</button>
