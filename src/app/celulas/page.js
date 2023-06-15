@@ -1,29 +1,21 @@
 import Link from 'next/link';
-import {supabase} from '@/lib/supabase-server';
+import { supabase } from '@/lib/supabase-server';
+
+export const revalidate = 0;
 
 const getData = async () => {
   try {
-    const { data, error } = await supabase
-      .from('areas_de_trabajo')
-      .select('*');
-    return data;
-  } catch (error) {
+    let { data: celulas, error } = await supabase
+    .from('areas_de_trabajo')
+    .select('*');
+    return celulas;
+  }catch(error){
     console.log(error);
   }
 }
 
-export default async function Celulas(){
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
-
-  console.log("session: ", session);
-  
-  /*if (!session) {
-    redirect('/login')
-  }*/
-
-  const data = await getData();
+const Celulas = async () => {
+  const celulas = await getData();
 
   return (
     <div>
@@ -36,10 +28,10 @@ export default async function Celulas(){
         </Link>
       </div>
       <div className='grid grid-cols-3 grid-rows-3 h-screen p-4 gap-6'>
-        {data.map((celula) => {
+        {celulas.map((celula) => {
           return (
             <Link key={celula.id} href={`/celulas/${celula.id}`}>
-              <div key={celula.id} className='bg-white rounded-lg shadow-md p-4 h-3/4'>
+              <div className='bg-white rounded-lg shadow-md p-4 h-3/4'>
                 <h2 className='w-full text-center font-bold'>{celula.name}</h2>
                 <p>{celula.description}</p>
               </div>
@@ -52,4 +44,4 @@ export default async function Celulas(){
   )
 }
 
-
+export default Celulas;

@@ -1,17 +1,9 @@
-"use client";
 import Link from 'next/link'
 import React from 'react';
-import { useRouter } from 'next/navigation';
 import styles from '@/styles/Navbar.module.css';
-import { supabase } from '@/lib/supabase-client';
+import UserData from './user-data';
 
-export const Navbar = () => {
-  const router = useRouter();
-
-  const handleSignOut = async () => {
-    await supabase.auth.signOut()
-    router.push("/")
-  }
+export const Navbar = async () => {
 
   return (
     <nav className={styles.navbar}>
@@ -22,14 +14,7 @@ export const Navbar = () => {
         <li className={styles['list-item']}><Link href="/celulas">Células</Link></li>
         <li className={styles['list-item']}><Link href="/editor">Code</Link></li>
       </ul>
-      <div className='w-3/12 px-4'>
-        <button 
-          className='w-full bg-transparent hover:bg-black transition-all text-blackfont-semibold hover:text-white py-2 px-4 border border-black hover:border-transparent rounded'
-          onClick={handleSignOut}
-        >
-          Cerrar Sesión
-        </button>
-      </div>
+      <UserData/>
     </nav>
   )
 }

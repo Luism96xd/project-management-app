@@ -2,10 +2,10 @@ import { supabase } from "@/lib/supabase-server";
 import { NextResponse } from "next/server";
 
 export async function GET() {
-    let { data: proyectos, error } = await supabase
+    let { data: celulas, error } = await supabase
         .from('areas_de_trabajo')
         .select('*');
-    return NextResponse.json(proyectos);
+    return NextResponse.json(celulas);
 }
 
 

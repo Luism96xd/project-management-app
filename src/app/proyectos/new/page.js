@@ -13,8 +13,8 @@ const CreateProject = () => {
         e.preventDefault();
         const response = await axios.post('/api/proyectos/', {name, description});
         console.log(response);
-        router.push("/proyectos")
         router.refresh();
+        router.push("/proyectos")
     }
 
     return (

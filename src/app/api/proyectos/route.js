@@ -2,7 +2,7 @@ import { supabase } from "@/lib/supabase-server";
 import { NextResponse } from 'next/server'
 
 export async function GET() {
-    const data = await supabase.from("proyectos").select();
+    const {data} = await supabase.from("proyectos").select();
     return NextResponse.json(JSON.stringify(data, null, 2));
 }
 

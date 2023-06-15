@@ -20,7 +20,7 @@ const TableBody = ({ tableData, columns }) => {
                     <tbody {...provided.droppableProps} ref={provided.innerRef}>
                         {tableData.map((data, index) => {
                             return (
-                                <Draggable key={data.id} draggableId={data.id} index={index}>
+                                <Draggable key={data.id} draggableId={data.id.toString()} index={index}>
                                     {(provided) => (
                                         <tr key={data.id}
                                             ref={provided.innerRef}

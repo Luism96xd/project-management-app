@@ -1,7 +1,10 @@
 import Table from '@/components/Table';
 import { supabase } from '@/lib/supabase-server';
+import Image from 'next/image';
+import Link from 'next/link';
 import { notFound, redirect } from 'next/navigation';
 import React from 'react';
+import ButtonCelulas from '@/components/button-celulas';
 
 const getData = async (id) => {
   try {
@@ -12,9 +15,8 @@ const getData = async (id) => {
   }
 }
 
-export default async function WorkTeamPage({ params }) {
-  const { id } = params;
-
+const CelulaPage = async ({params}) => {
+  const {id} = params;
   const celula = await getData(id);
 
   if (!celula) {
@@ -56,13 +58,37 @@ export default async function WorkTeamPage({ params }) {
     { label: "Start date", accessor: "start_date", sortable: true },
   ];
 
+
   return (
     <div className='grid grid-cols-2 h-screen p-4 gap-6'>
       <div className='bg-white rounded-lg p-10 flex flex-col gap-4'>
-        <h1 className='font-bold text-2xl'>{celula && `Célula de ${celula?.name}`}</h1>
+        <div className="flex items-center justify-between w-full">
+          <h1 className='font-bold text-2xl'>{celula && `Célula de ${celula?.name}`}</h1>
+          <div className='w-20 flex justify-between'>
+            <Link href={`/celulas/${id}/edit`}>
+              <Image
+                src={'/edit.svg'}
+                width={32}
+                height={32}
+                alt='Editar Proyecto'
+                className='fill-black dark:fill-white'
+              />
+            </Link>
+            <Link href={`/celulas/${id}/delete`}>
+              <Image
+                src={'/delete.svg'}
+                width={32}
+                height={32}
+                alt='Eliminar Proyecto'
+                className='fill-black dark:fill-white'
+              />
+            </Link>
+          </div>
+        </div>
         <p className='text-justify'>{celula?.description}</p>
       </div>
       <div className='bg-white rounded-lg p-4'>
+        <ButtonCelulas areaId={id}/>
         <Table
           caption={'Lista de Miembros'}
           data={data}
@@ -72,3 +98,5 @@ export default async function WorkTeamPage({ params }) {
     </div>
   )
 }
+
+export default CelulaPage;

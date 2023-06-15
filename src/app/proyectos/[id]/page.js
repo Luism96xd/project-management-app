@@ -1,6 +1,9 @@
 import Table from '@/components/Table';
 import { supabase } from '@/lib/supabase-server';
 import { notFound } from 'next/navigation';
+import Image from 'next/image';
+import Link from 'next/link';
+import ButtonProyectos from '@/components/button-proyectos';
 
 const getData = async (id) => {
     try {
@@ -68,10 +71,29 @@ export default async function ProjectPage({ params }) {
     return (
         <div className='grid grid-cols-2 h-screen p-4 gap-6'>
             <div className='bg-white rounded-lg p-10 flex flex-col gap-4'>
-                <h1 className='font-bold text-2xl'>{project.name}</h1>
+                <div className="flex items-center justify-between w-full">
+                    <h1 className='font-bold text-2xl'>{project.name}</h1>
+                    <div>
+                        <Link href={`/proyectos/${id}/edit`} className='flex justify-between w-1/2'>
+                            <Image
+                                src={'/edit.svg'}
+                                width={32}
+                                height={32}
+                                alt='Editar Proyecto'
+                            />
+                            <Image
+                                src={'/delete.svg'}
+                                width={32}
+                                height={32}
+                                alt='Eliminar Proyecto'
+                            />
+                        </Link>
+                    </div>
+                </div>
                 <p className='text-justify'>{project?.description}</p>
             </div>
             <div className='bg-white rounded-lg p-4'>
+                <ButtonProyectos projectId={id} />
                 <Table
                     caption={'Lista de Colaboradores'}
                     data={data}

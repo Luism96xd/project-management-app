@@ -1,11 +1,16 @@
-import { supabase } from "@/lib/supabase-client";
+import { supabase } from "@/lib/supabase-server";
+import {NextResponse} from 'next/server';
 
-export async function GET({ params }) {
+export async function GET(request, {params}) {
     const { id } = params;
-    const data = await supabase.from('areas_de_trabajo').select().match({ id }).single();
-    return NextResponse.json(data);
+    try {
+        const {data, error} = await supabase.from('areas_de_trabajo').select().match({ id }).single();
+        return NextResponse.json(data);
+    } catch (error) {
+        console.log(error);
+        return NextResponse.json([]);
+    }
 }
-
 
 export async function POST(request, {params}) {
     const {id} = params;
