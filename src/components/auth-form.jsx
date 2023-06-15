@@ -12,7 +12,7 @@ export default function AuthForm() {
       theme="light"
       showLinks={false}
       providers={['google']}
-      redirectTo="http://localhost:3000/auth/callback"
+      redirectTo="https://project-management-demo-app.vercel.app/auth/callback"
     />
   )
 }
