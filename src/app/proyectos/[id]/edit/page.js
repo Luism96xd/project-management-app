@@ -21,12 +21,12 @@ export default async function ProjectPage() {
 
     useEffect(() => {
         const getData = async () => {
-            const {id} = router.query;
+            const {id} = router.query.id;
             const response = await axios.get(`/api/proyectos/${id}`)
             setProject(response.data);
         }
         getData();
-    }, []);
+    }, [router.query.id]);
 
 
     if (!project) {
