@@ -4,12 +4,15 @@ import React from 'react'
 
 const ButtonProyectos = async ({ projectId }) => {
 
-    const {
-        data: { user },
-    } = await supabase.auth.getUser();
 
-    console.log(user)
-    console.log(areaId, user.id)
+    const {
+        data: { session },
+    } = await supabase.auth.getSession();
+    
+    if (session?.user) {
+        console.log(session?.user)
+    }
+
 
     const joinTeam = async () => {
         const { data, error } = await supabase

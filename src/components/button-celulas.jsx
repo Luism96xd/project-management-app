@@ -5,10 +5,12 @@ import React from 'react'
 const ButtonCelulas = async ({areaId}) => {
 
     const {
-        data: { user },
-    } = await supabase.auth.getUser();
-
-    console.log(user)
+        data: { session },
+    } = await supabase.auth.getSession();
+    
+    if (session?.user) {
+        console.log(session?.user)
+    }
 
     const joinTeam = async () => {
         console.log(areaId, user.id)

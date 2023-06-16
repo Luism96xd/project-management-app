@@ -1,34 +1,35 @@
-"use client";
 import React from 'react';
-import { useRouter } from 'next/navigation';
-import { supabase } from '@/lib/supabase-client';
+import { supabase } from '@/lib/supabase-server';
+import { redirect } from 'next/navigation';
 
 const UserData = async () => {
-
-    const router = useRouter();
-
   const {
-    data: { user },
-  } = await supabase.auth.getUser();
+    data: { session },
+  } = await supabase.auth.getSession();
+
 
   const handleSignOut = async () => {
-    const { error } = await supabase.auth.signOut()
-    if(error){
-      console.log(error);
+    'use server'
+    console.log('clicked')
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+      throw error;
     }
-    router.push("/login")
+    redirect('/login');
   }
 
   return (
     <div className='w-3/12 px-4 flex items-center'>
-    <div>{user?.email}</div>
-    <button 
-      className='w-full bg-transparent hover:bg-black transition-all text-blackfont-semibold hover:text-white py-2 px-4 border border-black hover:border-transparent rounded'
-      onClick={handleSignOut}
-    >
-      Cerrar Sesión
-    </button>
-  </div>
+      <div>{session?.user.email}</div>
+      <form>
+        <button
+          className='w-full bg-transparent hover:bg-black transition-all text-blackfont-semibold hover:text-white py-2 px-4 border border-black hover:border-transparent rounded'
+          formAction={handleSignOut}
+        >
+          Cerrar Sesión
+        </button>
+      </form>
+    </div>
   )
 }
 
